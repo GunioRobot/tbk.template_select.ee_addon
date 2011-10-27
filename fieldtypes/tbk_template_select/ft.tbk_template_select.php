@@ -43,7 +43,7 @@ function _templates_select($selected_templates)
 	$site_id = $PREFS->ini('site_id');
 
 	$r = $DSP->qdiv('defaultBold', 'Template Groups');
-  
+
 	$sql = "SELECT tg.group_name, t.template_id, t.template_name
 				FROM   exp_template_groups tg, exp_templates t
 				WHERE  tg.group_id = t.group_id
@@ -56,9 +56,9 @@ function _templates_select($selected_templates)
 	{
 		$sql .= "AND tg.is_user_blog = 'n' ";
 	}
-			
+
 	$templates = $DB->query($sql." ORDER BY tg.group_name, t.template_name");
-	
+
 	if ($templates->num_rows)
 	{
 		$r .= $DSP->input_select_header('templates[]', 'y', ($templates->num_rows < 15 ? $templates->num_rows : 15), 'auto');
@@ -93,7 +93,7 @@ function _templates_select($selected_templates)
 
 	/**
 	 * Display Field Settings
-	 * 
+	 *
 	 * @param  array  $field_settings  The field's settings
 	 * @return array  Settings HTML (cell1, cell2, rows)
 	 */
@@ -114,7 +114,7 @@ function _templates_select($selected_templates)
 
 	/**
 	 * Display Cell Settings
-	 * 
+	 *
 	 * @param  array  $cell_settings  The cell's settings
 	 * @return array  Settings HTML
 	 */
@@ -130,7 +130,7 @@ function _templates_select($selected_templates)
 
 	/**
 	 * Display Field
-	 * 
+	 *
 	 * @param  string  $field_name      The field's name
 	 * @param  mixed   $field_data      The field's current value
 	 * @param  array   $field_settings  The field's settings
@@ -139,7 +139,7 @@ function _templates_select($selected_templates)
 	function display_field($field_name, $field_data, $field_settings)
 	{
     global $FFSD;
-    
+
 		// initialize Fieldframe_SettingsDisplay
 		if ( ! isset($FFSD))
 		{
@@ -147,12 +147,12 @@ function _templates_select($selected_templates)
 		}
 
 		return $FFSD->select($field_name.'[]', $field_data, $field_settings['templates']);
-		
+
 	}
 
 	/**
 	 * Display Cell
-	 * 
+	 *
 	 * @param  string  $cell_name      The cell's name
 	 * @param  mixed   $cell_data      The cell's current value
 	 * @param  array   $cell_settings  The cell's settings
